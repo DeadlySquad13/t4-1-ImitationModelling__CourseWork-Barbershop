@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Nov 26 15:40:26 2017
-
-@author: Zerbs
-"""
 
 short_hairing_masters_quantity = 3
 fashion_hairing_masters_quantity = 5
@@ -26,7 +20,17 @@ regular_client_priority_id = 2
 
 max_blocking_interval = 1000
 
-verbous = False
-statistics_enable = False
+verbous = True
+statistics_enable = True
 
-number_of_clients = 100
+number_of_clients = 500
+step_number_of_clients = 100
+
+find_optimal_number_of_clients = False
+student_parameter = 0.05
+
+minimal_accuracy = 0.05
+minimal_stability = 0.01
+number_of_considered_means = 5
+
+time_of_switching_entrance = 100

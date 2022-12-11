@@ -26,10 +26,11 @@ if __name__ == "__main__":
     interval_before_new_customer = generators.get_interval_before_new_customer()
     #print(interval_before_new_customer)
     
-    plt.hist(generators.get_number_set(22,0.85,20,25,1000),50)
+    #plt.hist(generators.get_number_set(30,0.002,0.056,0.091,1000),50)
+    plt.hist(generators.get_number_set(3,0.3,0.08,0.13,1000),50)
     plt.title("Gamma Histogram")
-    plt.xlabel("Quantity")
-    plt.ylabel("Interval between customers")
+    plt.xlabel("Interval between customers")
+    plt.ylabel("Quantity")
     plt.grid(True)
 
     plt.show()

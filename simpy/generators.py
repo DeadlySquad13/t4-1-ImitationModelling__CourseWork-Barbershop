@@ -18,6 +18,12 @@ def get_random_priority():
 def get_interval_before_new_customer():
     return gamma(35,0.002,0.08,0.13)*60
 
+def get_interval_before_new_customer_epidemic():
+    return gamma(45,0.002,0.12,0.195)*60
+
+def get_interval_before_new_customer_summer():
+    return gamma(30,0.002,0.056,0.091)*60
+
 def get_writing_review_interval():
     return gamma(4,0.7,3,5)
 
