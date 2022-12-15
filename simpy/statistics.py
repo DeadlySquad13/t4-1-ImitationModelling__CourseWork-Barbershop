@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Nov 26 15:50:46 2017
-
-@author: Zerbs
-"""
 import matplotlib.pyplot as plt
 
 def reset_statistics():
@@ -182,6 +176,24 @@ def save_histogram(collection, number_of_intervals, title, xlabel, ylabel):
     plt.savefig("figure_%i.png" % figures_counter)
     figures_counter += 1
     plt.gcf().clear()
+
+class Statistics:
+    def __init__(self, pdf) -> None:
+        self.pdf = pdf
+
+    def save_histogram_to_pdf(self, collection, number_of_intervals, title,
+                               xlabel, ylabel) -> None:
+        global figures_counter
+        plt.hist(collection,number_of_intervals)
+        plt.title(title)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.grid(True)
+        figures_counter += 1
+
+        self.pdf.savefig()
+        plt.gcf().clear()
+
     
 def increase_lost_quantity():
     global lost
@@ -190,3 +202,5 @@ def increase_lost_quantity():
 def increase_lost_reviews_quantity():
     global lost_reviews
     lost_reviews += 1
+
+
