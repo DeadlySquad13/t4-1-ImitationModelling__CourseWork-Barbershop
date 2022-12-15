@@ -157,32 +157,35 @@ def get_values_from_collection(resource, collection):
     except:
         return [0]
 
-def show_histogram(collection, number_of_intervals, title, xlabel, ylabel):
-    global figures_counter
-    plt.hist(collection,number_of_intervals)
-    plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    plt.grid(True)
-    plt.show()
-    
-def save_histogram(collection, number_of_intervals, title, xlabel, ylabel):
-    global figures_counter
-    plt.hist(collection,number_of_intervals)
-    plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    plt.grid(True)
-    plt.savefig("figure_%i.png" % figures_counter)
-    figures_counter += 1
-    plt.gcf().clear()
 
 class Statistics:
     def __init__(self, pdf) -> None:
         self.pdf = pdf
 
+    def _build_histogram(self, collection, number_of_intervals, title, xlabel,
+                         ylabel) -> None:
+        global figures_counter
+        plt.hist(collection,number_of_intervals)
+        plt.title(title)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.grid(True)
+
     def save_histogram_to_pdf(self, collection, number_of_intervals, title,
                                xlabel, ylabel) -> None:
+        """
+
+        :param collection: 
+        :type collection: 
+        :param number_of_intervals: 
+        :type number_of_intervals: 
+        :param title: 
+        :type title: 
+        :param xlabel: 
+        :type xlabel: 
+        :param ylabel: 
+        :type ylabel: 
+        """
         global figures_counter
         plt.hist(collection,number_of_intervals)
         plt.title(title)
