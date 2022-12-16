@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 import simpy
 from entities import Entities
 
@@ -7,14 +6,15 @@ import generators
 import constants
 import statistics
 
-@dataclass
 class Simulation:
     env = simpy.Environment()
     entities = Entities(env)
     waiting_hall_fill = 0
     blocked = False
+    verbose = False
 
-    def __post_init__(self) -> None:
+    def __init__(self, verbose=False) -> None:
+        self.verbose = verbose
         # Run simulation.
         self.env.process(self.source(constants.number_of_clients))
         self.env.run()
@@ -38,7 +38,7 @@ class Simulation:
             self.blocked = False
 
     def try_print(self, message):
-        if constants.verbose:
+        if self.verbose:
             print(message)
 
     def increase_waiting_hall_fullness(self):

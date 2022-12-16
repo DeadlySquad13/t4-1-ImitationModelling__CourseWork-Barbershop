@@ -20,7 +20,7 @@ class BarberShopStatistics():
     """ High level class for organizing gathered statistics into human readable
     format
     """
-    _simulation = Simulation()
+    _simulation = Simulation(verbose=True)
     _statistics = Statistics()
 
     data = [

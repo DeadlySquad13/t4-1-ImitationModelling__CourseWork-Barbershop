@@ -77,7 +77,7 @@ def find_optimal_number_of_clients():
         common_prev_accuracy = common_accuracy
         criterias = []
         for i in range(5):
-            sim = simulation.Simulation()
+            sim = simulation.Simulation(verbose=False)
 
             # env = entities.env
             # env.process(utils.source(env, constants.number_of_clients))
