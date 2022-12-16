@@ -107,5 +107,3 @@ def find_optimal_number_of_clients():
         constants.number_of_clients += constants.step_number_of_clients
         counter += 1
     print("Optimal number of clients is %i" % (constants.number_of_clients - constants.step_number_of_clients*3))
-
-find_optimal_number_of_clients()

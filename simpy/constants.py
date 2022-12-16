@@ -20,7 +20,7 @@ regular_client_priority_id = 2
 
 max_blocking_interval = 1000
 
-verbose = False
+verbose = True
 statistics_enable = True
 
 number_of_clients = 500

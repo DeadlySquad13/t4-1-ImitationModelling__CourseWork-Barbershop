@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 import matplotlib.pyplot as plt
 
 def reset_statistics():
@@ -158,9 +159,9 @@ def get_values_from_collection(resource, collection):
         return [0]
 
 
+@dataclass()
 class Statistics:
-    def __init__(self, pdf) -> None:
-        self.pdf = pdf
+    pdf = None
 
     def _build_histogram(self, collection, number_of_intervals, title, xlabel,
                          ylabel) -> None:
@@ -170,6 +171,7 @@ class Statistics:
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
         plt.grid(True)
+        figures_counter += 1
 
     def save_histogram_to_pdf(self, collection, number_of_intervals, title,
                                xlabel, ylabel) -> None:
@@ -186,16 +188,33 @@ class Statistics:
         :param ylabel: 
         :type ylabel: 
         """
-        global figures_counter
-        plt.hist(collection,number_of_intervals)
-        plt.title(title)
-        plt.xlabel(xlabel)
-        plt.ylabel(ylabel)
-        plt.grid(True)
-        figures_counter += 1
 
+        if not self.pdf:
+            raise Exception('Cannot save histogram to pdf without pdf instance!')
+
+        self._build_histogram(collection, number_of_intervals, title, xlabel,
+                              ylabel)
         self.pdf.savefig()
         plt.gcf().clear()
+
+    def show_histogram(self, collection, number_of_intervals, title,
+                               xlabel, ylabel) -> None:
+        """
+
+        :param collection: 
+        :type collection: 
+        :param number_of_intervals: 
+        :type number_of_intervals: 
+        :param title: 
+        :type title: 
+        :param xlabel: 
+        :type xlabel: 
+        :param ylabel: 
+        :type ylabel: 
+        """
+        self._build_histogram(collection, number_of_intervals, title, xlabel,
+                              ylabel)
+        plt.show()
 
     
 def increase_lost_quantity():
