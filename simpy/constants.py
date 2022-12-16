@@ -20,13 +20,13 @@ regular_client_priority_id = 2
 
 max_blocking_interval = 1000
 
-verbous = True
+verbose = True
 statistics_enable = True
 
 number_of_clients = 500
 step_number_of_clients = 100
 
-find_optimal_number_of_clients = False
+find_optimal_number_of_clients = True
 student_parameter = 0.05
 
 minimal_accuracy = 0.05

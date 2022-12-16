@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Nov 26 15:50:46 2017
-
-@author: Zerbs
-"""
+from dataclasses import dataclass
 import matplotlib.pyplot as plt
 
 def reset_statistics():
@@ -163,25 +158,64 @@ def get_values_from_collection(resource, collection):
     except:
         return [0]
 
-def show_histogram(collection, number_of_intervals, title, xlabel, ylabel):
-    global figures_counter
-    plt.hist(collection,number_of_intervals)
-    plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    plt.grid(True)
-    plt.show()
-    
-def save_histogram(collection, number_of_intervals, title, xlabel, ylabel):
-    global figures_counter
-    plt.hist(collection,number_of_intervals)
-    plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    plt.grid(True)
-    plt.savefig("figure_%i.png" % figures_counter)
-    figures_counter += 1
-    plt.gcf().clear()
+
+@dataclass()
+class Statistics:
+    pdf = None
+
+    def _build_histogram(self, collection, number_of_intervals, title, xlabel,
+                         ylabel) -> None:
+        global figures_counter
+        plt.hist(collection,number_of_intervals)
+        plt.title(title)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.grid(True)
+        figures_counter += 1
+
+    def save_histogram_to_pdf(self, collection, number_of_intervals, title,
+                               xlabel, ylabel) -> None:
+        """
+
+        :param collection: 
+        :type collection: 
+        :param number_of_intervals: 
+        :type number_of_intervals: 
+        :param title: 
+        :type title: 
+        :param xlabel: 
+        :type xlabel: 
+        :param ylabel: 
+        :type ylabel: 
+        """
+
+        if not self.pdf:
+            raise Exception('Cannot save histogram to pdf without pdf instance!')
+
+        self._build_histogram(collection, number_of_intervals, title, xlabel,
+                              ylabel)
+        self.pdf.savefig()
+        plt.gcf().clear()
+
+    def show_histogram(self, collection, number_of_intervals, title,
+                               xlabel, ylabel) -> None:
+        """
+
+        :param collection: 
+        :type collection: 
+        :param number_of_intervals: 
+        :type number_of_intervals: 
+        :param title: 
+        :type title: 
+        :param xlabel: 
+        :type xlabel: 
+        :param ylabel: 
+        :type ylabel: 
+        """
+        self._build_histogram(collection, number_of_intervals, title, xlabel,
+                              ylabel)
+        plt.show()
+
     
 def increase_lost_quantity():
     global lost
@@ -190,3 +224,5 @@ def increase_lost_quantity():
 def increase_lost_reviews_quantity():
     global lost_reviews
     lost_reviews += 1
+
+

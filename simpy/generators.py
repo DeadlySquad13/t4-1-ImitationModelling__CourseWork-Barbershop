@@ -1,6 +1,21 @@
 import numpy
 import constants
 
+def gamma(shape, size, min, max):
+    result = numpy.random.gamma(shape,size)
+    while (result < min) or (result > max):
+        result = numpy.random.gamma(shape,size)
+    return result
+
+def get_number_set(shape, scale, min, max, quantity):
+    #return gamma(60, 0.1, 4.8, 8)
+    numbers = []
+    for i in range(quantity):
+        numbers.append(gamma(shape, scale, min, max))
+        #numbers.append(empirical())
+        #numbers.append(get_class_id())
+    return numbers 
+
 def get_class_id():
     num = numpy.random.rand()
     if (num < constants.short_hairing_client_probability):
@@ -64,9 +79,3 @@ def get_waiting_interval():
     else:
         return gamma(2, 5, 9, 10)
     return num
-
-def gamma(shape, size, min, max):
-    result = numpy.random.gamma(shape,size)
-    while (result < min) or (result > max):
-        result = numpy.random.gamma(shape,size)
-    return result
